@@ -1,0 +1,21 @@
+{
+  "name": "blq",
+  "version": "2.0.0",
+  "description": "blq",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "blq"
+  },
+  "keywords": [
+    "blq"
+  ],
+  "author": "blq",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
