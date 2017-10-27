@@ -11,9 +11,9 @@ MongoClient.connect('mongodb://localhost:27017/testrain', (err, db) => {
     }
     console.log('Connected ^_^');
     console.log('Loading data from \'db.json\'');
-    const data = JSON.parse(fs.readFileSync('./db.json', 'utf8'));
+    let data = JSON.parse(fs.readFileSync('./db.json', 'utf8'));
     console.log('Loaded ^_^');
-    for (const i of data) {
+    for (let i of data) {
         console.log('Loading ' + i.name);
         db.collection(i.name).insertMany(i.data);
         console.log(i.name + ' loaded successfuly ^_^');
