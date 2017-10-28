@@ -16,7 +16,6 @@ let api = express.Router();
 
 api.get('/getEmotions', (req, res) => {
     models.emotion.type.find((err, emo) => {
-        console.log(emo);
         if(err) {
             res.status(500);
             res.send();

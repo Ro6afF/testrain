@@ -16,7 +16,7 @@
     <mat-card *ngFor="let domain of emotions">
       <mat-radio-group>
         <span *ngFor="let emotion of domain">
-          <mat-radio-button [value]="emotion.id">
+          <mat-radio-button [value]="emotion.id" (click)="openEmoDensDio(emotion)">
             {{emotion.en_name}}
           </mat-radio-button>
           <br>
