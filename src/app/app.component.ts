@@ -2,6 +2,9 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { WebappService } from './webapp.service';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
+import { Emotion } from './models/emotion';
+import { Statement } from './models/statement';
+import { Statiment } from './models/statiment';
 
 @Component({
   selector: 'app-root',
@@ -12,8 +15,11 @@ export class AppComponent {
   title = 'app';
   ageFG: FormGroup;
   age: Number;
-  emotions: any = [];
-  selectedEmotions = [];
+  emotions: Emotion[] = [];
+  statements: Statement[] = [];
+  statiments: Statiment[] = [];
+  selectedStatements: number[] = [];
+  selectedEmotions: { id: number, density: number }[] = [];
   constructor(private _formBuilder: FormBuilder, private webSv: WebappService, public dialog: MatDialog) { }
 
   loadEmotions(emos) {
@@ -28,6 +34,8 @@ export class AppComponent {
       ageSlCtl: ['', Validators.compose([Validators.required, Validators.min(10), Validators.max(100)])]
     });
     this.webSv.getEmotions().then(x => this.loadEmotions(x)).catch(x => console.log(x));
+    this.webSv.getStatements().then(x => this.statements = x).catch(x => console.log(x));
+    this.webSv.getStatiments().then(x => this.statiments = x).catch(x => console.log(x));
   }
 
   updateAge(newValue): void {
@@ -35,7 +43,6 @@ export class AppComponent {
   }
 
   openEmoDensDio(emotion): void {
-    console.log(emotion.en_name);
     let dialogRef = this.dialog.open(EmoDensDia, {
       data: { emotion: emotion }
     });
@@ -43,15 +50,24 @@ export class AppComponent {
     dialogRef.afterClosed().subscribe(x => {
       this.selectedEmotions[emotion.domain_id] = {
         id: emotion.id,
-        density: x
+        density: x as number
       };
-      console.log(this.selectedEmotions);
     });
   }
 
-  /*onKey(newValue): void {
-    this.pesho = newValue.value;
-  }*/
+  openStateDensDia(state): void {
+    if (!this.selectedStatements[state.id]) {
+      let dialogRef = this.dialog.open(StateDensDia, {
+        data: { state: state }
+      })
+      dialogRef.afterClosed().subscribe(x => {
+        this.selectedStatements[state.id] = x as number;
+      });
+    }
+    else {
+      this.selectedStatements[state.id] = undefined;
+    }
+  }
 }
 
 @Component({
@@ -61,10 +77,19 @@ export class EmoDensDia {
 
   constructor(
     public dialogRef: MatDialogRef<EmoDensDia>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
-
-  onNoClick(): void {
-    this.dialogRef.close();
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+    this.dialogRef.disableClose = true;
   }
+}
 
+@Component({
+  templateUrl: 'state-dens-dia.html',
+})
+export class StateDensDia {
+
+  constructor(
+    public dialogRef: MatDialogRef<StateDensDia>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+    this.dialogRef.disableClose = true;
+  }
 }

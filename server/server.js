@@ -3,7 +3,9 @@ const path = require('path');
 const http = require('http');
 const mongoose = require('mongoose');
 const models = {
-    emotion: require('./models/emotion')
+    emotion: require('./models/emotion'),
+    statement: require('./models/statement'),
+    statiment: require('./models/statiment')
 }
 
 mongoose.connect('mongodb://localhost:27017/testrain');
@@ -14,7 +16,7 @@ app.use(express.static(path.join(__dirname, 'frontend')));
 
 let api = express.Router();
 
-api.get('/getEmotions', (req, res) => {
+api.get('/emotions', (req, res) => {
     models.emotion.type.find((err, emo) => {
         if(err) {
             res.status(500);
@@ -22,6 +24,28 @@ api.get('/getEmotions', (req, res) => {
             return;
         }
         res.json(emo);
+    });
+});
+
+api.get('/statements', (req, res) => {
+    models.statement.type.find((err, stat) => {
+        if(err) {
+            res.status(500);
+            res.send();
+            return;
+        }
+        res.json(stat);
+    });
+});
+
+api.get('/statiments', (req, res) => {
+    models.statiment.type.find((err, stat) => {
+        if(err) {
+            res.status(500);
+            res.send();
+            return;
+        }
+        res.json(stat);
     });
 });
 

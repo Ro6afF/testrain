@@ -1,18 +1,18 @@
-<!--The content below is only a placeholder and can be replaced.-->
-
 <mat-horizontal-stepper linear="false">
   <mat-step [stepControl]="ageFG">
     <ng-template matStepLabel>Choose your age</ng-template>
     <br>
     <form [formGroup]="ageFG">
+      <h4>Select your age:</h4>
       <mat-slider thumbLabel formControlName="ageSlCtl" min="10" max="100" step="1" value="-1" style="width: 100%" #ageSl></mat-slider>
     </form>
     <div>
       <button mat-button matStepperNext (click)="updateAge(ageSl.value)">Next</button>
     </div>
   </mat-step>
-  <mat-step>
+  <mat-step [stepControl]="ageFG">
     <ng-template matStepLabel>Select emotions</ng-template>
+    <h4>Select at least 2 the most common feelings:</h4>
     <mat-card *ngFor="let domain of emotions">
       <mat-radio-group>
         <span *ngFor="let emotion of domain">
@@ -23,20 +23,32 @@
         </span>
       </mat-radio-group>
     </mat-card>
+    <button mat-button matStepperPrevious>Back</button>
+    <span *ngIf="selectedEmotions.length >= 2">
+      <button mat-button matStepperNext>Next</button>
+    </span>
+    <span *ngIf="selectedEmotions.length < 2">
+      <button mat-button disabled>Next</button>
+    </span>
   </mat-step>
-  <!--<mat-step [stepControl]="secondFormGroup">
-      <form [formGroup]="secondFormGroup">
-        <ng-template matStepLabel>Fill out your address</ng-template>
-        <mat-form-field>
-          <input matInput placeholder="Address" formControlName="secondCtrl" required>
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
+  <mat-step [stepControl]="ageFG">
+    <ng-template matStepLabel>Select statements</ng-template>
+    <h4>Choose only the worlds that relate mostly precise to the selected emotions:</h4>
+    <mat-card *ngFor="let statement of statements">
+      <mat-checkbox [value]="statement.id" (click)="openStateDensDia(statement)">{{statement.en_name}}</mat-checkbox>
+    </mat-card>
+    <button mat-button matStepperPrevious>Back</button>
+    <button mat-button matStepperNext>Next</button>
+  </mat-step>
+  <mat-step [stepControl]="ageFG">
+      <ng-template matStepLabel>Select WTFs?</ng-template>
+      <h4>Choose only these words, that relate most precisely to selected emotions:</h4>
+      <mat-card *ngFor="let statiment of statiments">
+        <mat-checkbox [value]="statiment.id">{{statiment.en_name}}</mat-checkbox>
+      </mat-card>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperNext>Next</button>
     </mat-step>
--->
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
     You are now done.
