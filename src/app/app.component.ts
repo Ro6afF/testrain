@@ -18,8 +18,9 @@ export class AppComponent {
   emotions: Emotion[] = [];
   statements: Statement[] = [];
   statiments: Statiment[] = [];
-  selectedStatements: number[] = [];
-  selectedEmotions: { id: number, density: number }[] = [];
+  selectedStatements: { dens: number, time: Date }[] = [];
+  selectedEmotions: { id: number, density: number, time: Date }[] = [];
+  selectStatiments: Date[] = [];
   constructor(private _formBuilder: FormBuilder, private webSv: WebappService, public dialog: MatDialog) { }
 
   loadEmotions(emos) {
@@ -50,8 +51,10 @@ export class AppComponent {
     dialogRef.afterClosed().subscribe(x => {
       this.selectedEmotions[emotion.domain_id] = {
         id: emotion.id,
-        density: x as number
+        density: x as number,
+        time: new Date()
       };
+      console.log(this.selectedEmotions);
     });
   }
 
@@ -61,12 +64,33 @@ export class AppComponent {
         data: { state: state }
       })
       dialogRef.afterClosed().subscribe(x => {
-        this.selectedStatements[state.id] = x as number;
+        this.selectedStatements[state.id] = {
+          dens: x as number,
+          time: new Date()
+        }
+        console.log(this.selectedStatements);
       });
     }
     else {
       this.selectedStatements[state.id] = undefined;
     }
+  }
+
+  selectStatiment(stati): void {
+    if(this.selectStatiments[stati.id]) {
+      this.selectStatiments[stati.id] = undefined;
+    } else {
+      this.selectStatiments[stati.id] = new Date();
+    }
+    console.log(this.selectStatiments);
+  }
+
+  submitData(): void {
+    this.webSv.submit({
+      selectedEmotions: this.selectedEmotions,
+      selectedStatements: this.selectStatiments,
+      selectStatiments: this.selectStatiments
+    });
   }
 }
 

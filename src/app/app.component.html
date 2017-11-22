@@ -44,7 +44,7 @@
       <ng-template matStepLabel>Select WTFs?</ng-template>
       <h4>Choose only these words, that relate most precisely to selected emotions:</h4>
       <mat-card *ngFor="let statiment of statiments">
-        <mat-checkbox [value]="statiment.id">{{statiment.en_name}}</mat-checkbox>
+        <mat-checkbox [value]="statiment.id"(click)="selectStatiment(statiment)">{{statiment.en_name}}</mat-checkbox>
       </mat-card>
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button matStepperNext>Next</button>
@@ -54,7 +54,7 @@
     You are now done.
     <div>
       <button mat-button matStepperPrevious>Back</button>
-      <button mat-button>Submit</button>
+      <button mat-button (click)="sumbitData()">Submit</button>
     </div>
   </mat-step>
 </mat-horizontal-stepper>

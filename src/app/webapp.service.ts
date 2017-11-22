@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, RequestOptionsArgs } from '@angular/http';
 
 import { Emotion } from './models/emotion';
 import { Statement } from './models/statement';
@@ -27,6 +27,10 @@ export class WebappService {
     return this.http.get('api/statiments').toPromise()
       .then(response => response.json() as Statiment[])
       .catch(this.handleError);
+  }
+
+  submit(obj): void {
+    this.http.post('api/sumbit', obj);
   }
 
   private handleError(error: any): Promise<any> {

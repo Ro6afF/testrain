@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const http = require('http');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 const models = {
     emotion: require('./models/emotion'),
     statement: require('./models/statement'),
@@ -48,6 +49,10 @@ api.get('/statiments', (req, res) => {
         res.json(stat);
     });
 });
+
+api.post('/submit', (req, res) => {
+    console.log(req);
+})
 
 app.use('/api', api);
 
