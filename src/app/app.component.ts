@@ -15,12 +15,13 @@ export class AppComponent {
   title = 'app';
   ageFG: FormGroup;
   age: Number;
+  gender: boolean;
   emotions: Emotion[] = [];
   statements: Statement[] = [];
   statiments: Statiment[] = [];
   selectedStatements: { dens: number, time: Date }[] = [];
   selectedEmotions: { id: number, density: number, time: Date }[] = [];
-  selectStatiments: Date[] = [];
+  selectedStatiments: Date[] = [];
   constructor(private _formBuilder: FormBuilder, private webSv: WebappService, public dialog: MatDialog) { }
 
   loadEmotions(emos) {
@@ -32,7 +33,8 @@ export class AppComponent {
 
   ngOnInit() {
     this.ageFG = this._formBuilder.group({
-      ageSlCtl: ['', Validators.compose([Validators.required, Validators.min(10), Validators.max(100)])]
+      ageSlCtl: ['', Validators.compose([Validators.required, Validators.min(10), Validators.max(100)])],
+      gender: ['', Validators.required]
     });
     this.webSv.getEmotions().then(x => this.loadEmotions(x)).catch(x => console.log(x));
     this.webSv.getStatements().then(x => this.statements = x).catch(x => console.log(x));
@@ -54,7 +56,6 @@ export class AppComponent {
         density: x as number,
         time: new Date()
       };
-      console.log(this.selectedEmotions);
     });
   }
 
@@ -68,7 +69,6 @@ export class AppComponent {
           dens: x as number,
           time: new Date()
         }
-        console.log(this.selectedStatements);
       });
     }
     else {
@@ -77,19 +77,21 @@ export class AppComponent {
   }
 
   selectStatiment(stati): void {
-    if(this.selectStatiments[stati.id]) {
-      this.selectStatiments[stati.id] = undefined;
+    if(this.selectedStatiments[stati.id]) {
+      this.selectedStatiments[stati.id] = undefined;
     } else {
-      this.selectStatiments[stati.id] = new Date();
+      this.selectedStatiments[stati.id] = new Date();
     }
-    console.log(this.selectStatiments);
   }
 
   submitData(): void {
+    console.log("plokijuh")
     this.webSv.submit({
+      age: this.age,
+      gender: this.gender,
       selectedEmotions: this.selectedEmotions,
-      selectedStatements: this.selectStatiments,
-      selectStatiments: this.selectStatiments
+      selectedStatements: this.selectedStatements,
+      selectedStatiments: this.selectedStatiments
     });
   }
 }

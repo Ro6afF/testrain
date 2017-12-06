@@ -15,11 +15,14 @@ let app = express();
 
 app.use(express.static(path.join(__dirname, 'frontend')));
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
 let api = express.Router();
 
 api.get('/emotions', (req, res) => {
     models.emotion.type.find((err, emo) => {
-        if(err) {
+        if (err) {
             res.status(500);
             res.send();
             return;
@@ -30,7 +33,7 @@ api.get('/emotions', (req, res) => {
 
 api.get('/statements', (req, res) => {
     models.statement.type.find((err, stat) => {
-        if(err) {
+        if (err) {
             res.status(500);
             res.send();
             return;
@@ -41,7 +44,7 @@ api.get('/statements', (req, res) => {
 
 api.get('/statiments', (req, res) => {
     models.statiment.type.find((err, stat) => {
-        if(err) {
+        if (err) {
             res.status(500);
             res.send();
             return;
@@ -51,7 +54,7 @@ api.get('/statiments', (req, res) => {
 });
 
 api.post('/submit', (req, res) => {
-    console.log(req);
+    console.log(req.body);
 })
 
 app.use('/api', api);

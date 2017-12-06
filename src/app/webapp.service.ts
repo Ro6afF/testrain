@@ -30,7 +30,9 @@ export class WebappService {
   }
 
   submit(obj): void {
-    this.http.post('api/sumbit', obj);
+    this.http.post('api/submit', obj).toPromise()
+      .then(x => console.log("succeed"))
+      .catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {
