@@ -55,6 +55,7 @@ api.get('/statiments', (req, res) => {
 
 api.post('/submit', (req, res) => {
     console.log(req.body);
+    res.send("ok");
 })
 
 app.use('/api', api);

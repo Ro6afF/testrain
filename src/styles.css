@@ -2,4 +2,9 @@
 body {
     margin: 0 !important;
 }
+
+.mat-checkbox-label {
+    white-space: normal !important;
+}
+
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
