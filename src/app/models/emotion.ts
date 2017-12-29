@@ -3,4 +3,6 @@ export class Emotion {
     bg_name: string;
     en_name: string;
     domain_id: number;
+    tension_id: number;
+    string_id: number;
 }

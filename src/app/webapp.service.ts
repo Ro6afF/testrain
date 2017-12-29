@@ -29,9 +29,9 @@ export class WebappService {
       .catch(this.handleError);
   }
 
-  submit(obj): void {
-    this.http.post('api/submit', obj).toPromise()
-      .then(x => console.log("succeed"))
+  submit(obj): Promise<string> {
+    return this.http.post('api/submit', obj).toPromise()
+      .then(x => Promise.resolve(x.text()))
       .catch(this.handleError);
   }
 
