@@ -6,7 +6,7 @@
       <h4>Select your age:</h4>
       <mat-slider thumbLabel formControlName="ageSlCtl" min="10" max="100" step="1" value="-1" style="width: 100%" #ageSl (mouseup)="updateAge(ageSl.value)"></mat-slider>
       <h4>Select gender:</h4>
-      <mat-radio-group [(ngModel)]="gender" formControlName="gender">
+      <mat-radio-group [(ngModel)]="isMale" formControlName="gender">
         <div>
           <mat-radio-button value="true"> Male </mat-radio-button>
         </div>
@@ -57,6 +57,10 @@
     </mat-card>
     <button mat-button matStepperPrevious>Back</button>
     <button mat-button matStepperNext>Next</button>
+  </mat-step>
+  <mat-step [stepControl]="ageFG">
+    <ng-template matStepLabel>Miniscripts</ng-template>
+    <h4>Chushki, krastaici i domati:</h4>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>

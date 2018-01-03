@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class TestComponent implements OnInit {
   ageFG: FormGroup;
   age: { value: Number, time: Date };
-  gender: boolean;
+  isMale: boolean;
   emotions: Emotion[] = [];
   statements: Statement[] = [];
   statiments: Statiment[] = [];
@@ -32,6 +32,7 @@ export class TestComponent implements OnInit {
     for (let i = 0; i < 10; i++) {
       this.emotions[i] = emos.filter((x) => x.domain_id == i);
     }
+    console.log(this.emotions);
   }
 
   ngOnInit() {
@@ -90,7 +91,7 @@ export class TestComponent implements OnInit {
   submitData(): void {
     this.webSv.submit({
       age: this.age,
-      gender: this.gender,
+      isMale: this.isMale,
       selectedEmotions: this.selectedEmotions,
       selectedStatements: this.selectedStatements,
       selectedStatiments: this.selectedStatiments

@@ -1,4 +1,8 @@
-<p>
-  results works!
-</p>
-{{this.route.snapshot.paramMap.get('id')}}
+<span *ngIf="showSpecInfo">
+  {{this.route.snapshot.paramMap.get('id')}}
+</span>
+<span *ngIf="!showSpecInfo">
+  <p>
+    results works!
+  </p>
+</span>

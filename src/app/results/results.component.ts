@@ -7,9 +7,13 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ['./results.component.css']
 })
 export class ResultsComponent implements OnInit {
+  showSpecInfo: boolean = false;
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+    if(this.route.snapshot.paramMap.get('id')) {
+      this.showSpecInfo = true;
+    }
   }
 }

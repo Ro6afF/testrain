@@ -4,6 +4,8 @@ import { Http, RequestOptionsArgs } from '@angular/http';
 import { Emotion } from './models/emotion';
 import { Statement } from './models/statement';
 import { Statiment } from './models/statiment';
+import { Submission } from './models/submission';
+import { Miniscript } from "./models/miniscript";
 
 import 'rxjs/add/operator/toPromise';
 
@@ -29,9 +31,21 @@ export class WebappService {
       .catch(this.handleError);
   }
 
+  getMiniscripts(): Promise<Miniscript[]> {
+    return this.http.get('api/miniscripts').toPromise()
+    .then(response => response.json() as Miniscript[])
+    .catch(this.handleError);
+  }
+
   submit(obj): Promise<string> {
     return this.http.post('api/submit', obj).toPromise()
       .then(x => Promise.resolve(x.text()))
+      .catch(this.handleError);
+  }
+
+  getSumbission(id: any):Promise<Submission[]> {
+    return this.http.get('api/submission' + id).toPromise()
+      .then(response => response.json() as Submission[])
       .catch(this.handleError);
   }
 

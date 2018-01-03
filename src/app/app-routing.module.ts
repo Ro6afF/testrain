@@ -7,6 +7,7 @@ import { ResultsComponent } from "./results/results.component";
 const routes: Routes = [
   { path: '', component: TestComponent, pathMatch: 'full' },
   { path: 'results/:id', component: ResultsComponent },
+  { path: 'results', component: ResultsComponent },
   { path: '**', redirectTo: '' }
 ];
 

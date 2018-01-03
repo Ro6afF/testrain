@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import {
   MatSliderModule, MatStepperModule, MatButtonModule, MatInputModule, MatRadioModule,
-  MatCardModule, MatDialogModule, MatCheckboxModule
+  MatCardModule, MatDialogModule, MatCheckboxModule, MatTooltipModule
 } from '@angular/material';
 
 @NgModule({
@@ -13,7 +13,8 @@ import {
     MatRadioModule,
     MatCardModule,
     MatDialogModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatTooltipModule
   ],
   exports: [
     MatSliderModule,
@@ -23,7 +24,8 @@ import {
     MatRadioModule,
     MatCardModule,
     MatDialogModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatTooltipModule
   ],
   declarations: []
 })

@@ -6,10 +6,12 @@ const bodyParser = require('body-parser');
 const models = {
     emotion: require('./models/emotion'),
     statement: require('./models/statement'),
-    statiment: require('./models/statiment')
+    statiment: require('./models/statiment'),
+    submission: require('./models/submission'),
+    miniscript: require('./models/miniscript')
 }
 
-mongoose.connect('mongodb://localhost:27017/testrain');
+mongoose.connect('mongodb://localhost:27017/testrain', { useMongoClient: true });
 
 let app = express();
 
@@ -53,10 +55,40 @@ api.get('/statiments', (req, res) => {
     });
 });
 
+api.get('/minscripts', (req, res) => {
+    models.miniscript.type.find((err, stat) => {
+        if (err) {
+            res.status(500);
+            res.send();
+            return;
+        }
+        res.json(stat);
+    });
+});
+
 api.post('/submit', (req, res) => {
-    console.log(req.body);
-    res.send("ok");
+    models.submission.type.count({}, (err, cnt) => {
+        let newRes = new models.submission.type({
+            uId: cnt,
+            age: parseInt(req.body.age.value),
+            isMale: (req.body.isMale == 'true'), 
+            selectedEmotions: req.body.selectedEmotions,
+            selectedStatements: req.body.selectedStatements,
+            selectedStatiments: req.body.selectedStatiments
+        });
+        newRes.save((err) => {
+            console.log(err);
+            res.send(cnt + "");
+        });
+    });
 })
+
+api.get('/submission/:id', (req, res) => {
+    models.submission.type.findOne({uId: req.params.id}, (err, resu) => {
+        console.log(resu);
+        res.json(resu);
+    });
+});
 
 app.use('/api', api);
 
