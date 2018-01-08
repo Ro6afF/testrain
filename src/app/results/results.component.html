@@ -1,7 +1,21 @@
-<span *ngIf="showSpecInfo">
-  {{this.route.snapshot.paramMap.get('id')}}
+<link rel="stylesheet" href="/bootstrap.min.css">
+<span *ngIf="specInfo">
+    <table class="table table-striped" style="width: 50%">
+        <thead>
+          <tr>
+            <th scope="col">Emotion</th>
+            <th scope="col">Density</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let emo of emoDens">
+            <td> {{emo.name}} </td>
+            <td> {{emo.density}} </td>
+          </tr>
+        </tbody>
+      </table>
 </span>
-<span *ngIf="!showSpecInfo">
+<span *ngIf="!specInfo">
   <p>
     results works!
   </p>

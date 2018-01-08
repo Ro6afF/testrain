@@ -5,6 +5,7 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { Emotion } from '../models/emotion';
 import { Statement } from '../models/statement';
 import { Statiment } from '../models/statiment';
+import { Miniscript } from '../models/miniscript';
 import { Router } from '@angular/router';
 
 @Component({
@@ -19,6 +20,8 @@ export class TestComponent implements OnInit {
   emotions: Emotion[] = [];
   statements: Statement[] = [];
   statiments: Statiment[] = [];
+  miniscripts: Miniscript[] = [];
+  sminiscripts: Miniscript[] = [];
   selectedStatements: { dens: number, time: Date }[] = [];
   selectedEmotions: { id: number, density: number, time: Date }[] = [];
   selectedStatiments: Date[] = [];
@@ -32,7 +35,6 @@ export class TestComponent implements OnInit {
     for (let i = 0; i < 10; i++) {
       this.emotions[i] = emos.filter((x) => x.domain_id == i);
     }
-    console.log(this.emotions);
   }
 
   ngOnInit() {
@@ -43,6 +45,7 @@ export class TestComponent implements OnInit {
     this.webSv.getEmotions().then(x => this.loadEmotions(x)).catch(x => console.log(x));
     this.webSv.getStatements().then(x => this.statements = x).catch(x => console.log(x));
     this.webSv.getStatiments().then(x => this.statiments = x).catch(x => console.log(x));
+    this.webSv.getMiniscripts().then(x => this.miniscripts = x).catch(x => console.log(x));
   }
 
   updateAge(newValue): void {
@@ -60,6 +63,12 @@ export class TestComponent implements OnInit {
         density: x as number,
         time: new Date()
       };
+      this.sminiscripts = [];
+      for (let i of this.miniscripts) {
+        if (this.selectedEmotions[i.domain1_id] && this.selectedEmotions[i.domain2_id]) {
+          this.sminiscripts.push(i);
+        }
+      }
     });
   }
 

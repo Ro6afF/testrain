@@ -15,37 +15,37 @@ export class WebappService {
 
   getEmotions(): Promise<Emotion[]> {
     return this.http.get('api/emotions').toPromise()
-      .then(response => response.json() as Emotion[])
+      .then(response => Promise.resolve(response.json() as Emotion[]))
       .catch(this.handleError);
   }
 
   getStatements(): Promise<Statement[]> {
     return this.http.get('api/statements').toPromise()
-      .then(response => response.json() as Statement[])
+      .then(response => Promise.resolve(response.json() as Statement[]))
       .catch(this.handleError);
   }
 
   getStatiments(): Promise<Statiment[]> {
     return this.http.get('api/statiments').toPromise()
-      .then(response => response.json() as Statiment[])
+      .then(response => Promise.resolve(response.json() as Statiment[]))
       .catch(this.handleError);
   }
 
   getMiniscripts(): Promise<Miniscript[]> {
     return this.http.get('api/miniscripts').toPromise()
-    .then(response => response.json() as Miniscript[])
+    .then(response => Promise.resolve(response.json() as Miniscript[]))
     .catch(this.handleError);
   }
 
-  submit(obj): Promise<string> {
+  submit(obj: Submission): Promise<string> {
     return this.http.post('api/submit', obj).toPromise()
       .then(x => Promise.resolve(x.text()))
       .catch(this.handleError);
   }
 
-  getSumbission(id: any):Promise<Submission[]> {
-    return this.http.get('api/submission' + id).toPromise()
-      .then(response => response.json() as Submission[])
+  getSumbission(id: any):Promise<Submission> {
+    return this.http.get('api/submission/' + id).toPromise()
+      .then(response => Promise.resolve(response.json() as Submission))
       .catch(this.handleError);
   }
 

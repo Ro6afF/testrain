@@ -15,6 +15,7 @@ mongoose.connect('mongodb://localhost:27017/testrain', { useMongoClient: true })
 
 let app = express();
 
+app.use(express.static(path.join(__dirname, 'static')));
 app.use(express.static(path.join(__dirname, 'frontend')));
 
 app.use(bodyParser.json());
@@ -55,7 +56,7 @@ api.get('/statiments', (req, res) => {
     });
 });
 
-api.get('/minscripts', (req, res) => {
+api.get('/miniscripts', (req, res) => {
     models.miniscript.type.find((err, stat) => {
         if (err) {
             res.status(500);
@@ -77,7 +78,6 @@ api.post('/submit', (req, res) => {
             selectedStatiments: req.body.selectedStatiments
         });
         newRes.save((err) => {
-            console.log(err);
             res.send(cnt + "");
         });
     });
@@ -85,7 +85,6 @@ api.post('/submit', (req, res) => {
 
 api.get('/submission/:id', (req, res) => {
     models.submission.type.findOne({uId: req.params.id}, (err, resu) => {
-        console.log(resu);
         res.json(resu);
     });
 });
