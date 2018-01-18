@@ -5,4 +5,5 @@ export class Emotion {
     domain_id: number;
     tension_id: number;
     string_id: number;
+    dimension_id: number;
 }

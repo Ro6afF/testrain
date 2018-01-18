@@ -8,7 +8,8 @@ const models = {
     statement: require('./models/statement'),
     statiment: require('./models/statiment'),
     submission: require('./models/submission'),
-    miniscript: require('./models/miniscript')
+    miniscript: require('./models/miniscript'),
+    awareness: require('./models/awareness')
 }
 
 mongoose.connect('mongodb://localhost:27017/testrain', { useMongoClient: true });
@@ -72,10 +73,11 @@ api.post('/submit', (req, res) => {
         let newRes = new models.submission.type({
             uId: cnt,
             age: parseInt(req.body.age.value),
-            isMale: (req.body.isMale == 'true'), 
+            isMale: (req.body.isMale == 'true'),
             selectedEmotions: req.body.selectedEmotions,
             selectedStatements: req.body.selectedStatements,
-            selectedStatiments: req.body.selectedStatiments
+            selectedStatiments: req.body.selectedStatiments,
+            selectedMiniscripts: req.body.selectedMiniscripts
         });
         newRes.save((err) => {
             res.send(cnt + "");
@@ -84,8 +86,19 @@ api.post('/submit', (req, res) => {
 })
 
 api.get('/submission/:id', (req, res) => {
-    models.submission.type.findOne({uId: req.params.id}, (err, resu) => {
+    models.submission.type.findOne({ uId: req.params.id }, (err, resu) => {
         res.json(resu);
+    });
+});
+
+api.get('/awarenesses', (req, res) => {
+    models.awareness.type.find((err, stat) => {
+        if (err) {
+            res.status(500);
+            res.send();
+            return;
+        }
+        res.json(stat);
     });
 });
 

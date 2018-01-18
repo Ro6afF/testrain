@@ -7,5 +7,6 @@ export class Submission {
     selectedEmotions: { id: number, density: number, time: Date }[];
     selectedStatements: { dens: number, time: Date }[];
     selectedStatiments: Date[];
+    selectedMiniscripts: Date[];
     isMale: boolean;
 }

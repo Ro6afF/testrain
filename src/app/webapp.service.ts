@@ -6,6 +6,7 @@ import { Statement } from './models/statement';
 import { Statiment } from './models/statiment';
 import { Submission } from './models/submission';
 import { Miniscript } from "./models/miniscript";
+import { Awareness } from "./models/awareness";
 
 import 'rxjs/add/operator/toPromise';
 
@@ -33,8 +34,8 @@ export class WebappService {
 
   getMiniscripts(): Promise<Miniscript[]> {
     return this.http.get('api/miniscripts').toPromise()
-    .then(response => Promise.resolve(response.json() as Miniscript[]))
-    .catch(this.handleError);
+      .then(response => Promise.resolve(response.json() as Miniscript[]))
+      .catch(this.handleError);
   }
 
   submit(obj: Submission): Promise<string> {
@@ -43,9 +44,15 @@ export class WebappService {
       .catch(this.handleError);
   }
 
-  getSumbission(id: any):Promise<Submission> {
+  getSumbission(id: any): Promise<Submission> {
     return this.http.get('api/submission/' + id).toPromise()
       .then(response => Promise.resolve(response.json() as Submission))
+      .catch(this.handleError);
+  }
+
+  getAwarenesses(): Promise<Awareness[]> {
+    return this.http.get('api/awarenesses').toPromise()
+      .then(response => Promise.resolve(response.json() as Awareness[]))
       .catch(this.handleError);
   }
 

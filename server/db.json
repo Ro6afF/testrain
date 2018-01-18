@@ -1101,7 +1101,7 @@
         ]
     },
     {
-        "name": "management",
+        "name": "managements",
         "data": [
             {
                 "id": 0,
@@ -1109,7 +1109,7 @@
                 "en_name": "Sedative awareness",
                 "en_desc": "It is a sign of tendency which enable to resume dealing with the escaping source of negative affects and more effective remediation, reduction or attenuation is gained. It is transient state of optimizing the non-winning trade-offs or coping by masking of or compromising the confusion of limited personal resources to deal with stress.",
                 "bg_desc": "(Унес) Търсиш и намираш в живота различни начини за лично успокояване, временно облекчаване. Резултатите показват, че има частичен или временен, неустойчив баланс между намеренията ти, последствията от действията и отношенията с другите, съпоставени с условията и уменията ти да постигаш това, към което се стремиш.",
-                "score_group": "00"
+                "score_group": ["00"]
             },
             {
                 "id": 1,
@@ -1117,7 +1117,7 @@
                 "en_name": "Balanced awareness",
                 "en_desc": " Optimized and satisfied emotional life due to successful strategies to keep short-term winning emotional payoff. There are no clear signs for future long-term balance to be stable and it could transform in self-sedative or pre-addictive management state.",
                 "bg_desc": "(Хармония) Общото състояние на емоционалния ти живот показва благоприятно съотношение в полза на положителните преживявания. Въпреки хармоничните взаимоотношения и благотворния изход от житейските обстоятелства няма ясен знак, че в бъдеще тази перспектива би могла да се задържи като дългосрочна тенденция. Равновесието е непостоянно състояние, особено когато претърпяваш изпитания. Това оставя своя отпечатък на редуващи се благотворни и ощетяващи изживявания. Внимателно осмисляш последствията, така че да избегнеш или да редуваш успокоителни и увличащи отношения.",
-                "score_group": "11, 01, 10"
+                "score_group": ["11", "01", "10"]
             },
             {
                 "id": 2,
@@ -1125,7 +1125,7 @@
                 "en_name": "Pre-addictive awareness",
                 "en_desc": "Prompt to partially sedate with skills which leading to a kind unrealistic feelings, „as if“ benefits when negative anticipation is evoked and linked to further unpleasant emotional consequences and so increases urgency to deal with minimal risk. There is a clear signs of temporal balanced nuclear outcomes due to conditional minimization of emotional effects, leading sometimes to lack of motivation or of positive exaggeration and overload due to maximization of positive trade-offs by strong commitment to something valuable to compensate negative emotional experience at expanse of potential future emotional turbulence.",
                 "bg_desc": "(Захлас) Само частично намираш начини да уталожиш и намалиш емоционалните вреди и стреса с познатите ти умения или навици, като в същото време проличава и тенденция да губиш почва под краката, да се появяват моменти на силни предизвикателства към емоционалната устойчивост, както и да изпитваш трудности да предугаждаш и негативните последствия, да смесваш в гледната си точка реалистични и нереалистични отношения и преценки, дори и при обичайни ситуации, с минимални рискове. Ефектът от тази неравномерност в чувствата насочва към това, че използваш омаловажаващи или прикриващи отрицателния ефект на емоциите подходи, което води до частичното им осъзнаване. Това може да доведе до нереалистични очаквания или да те лиши от мотивация. Насочва към това, че наваксваш за отрицателните си преживявания с преувеличаване на положителните, което може да създаде неочаквани конфликти или напрежение, поради което трудно може да се предскаже резултата или благоприятния изход, въпреки временното удовлетворение, което изпитваш.",
-                "score_group": "02, 12"
+                "score_group": ["02", "12"]
             },
             {
                 "id": 3,
@@ -1133,7 +1133,7 @@
                 "en_name": "Addictive awareness",
                 "en_desc": "Temporal, unsuccessful or compulsive try to find way out from difficult situation or get rid of without positive savoring, whose absence is punishing and whose presence briefly provides relief, but also perpetual vigilance and minimal awareness is provided as a cost of emotional turbulence. There is a clear signs of emotional turbulent trade-offs due to a frequent conflicts, confusions about the personal meaning and purposes or of stressful and non-optimized overload due to not well managed emotional ambiguities or unsuccessful compromising which leads to self-sacrifices and high risk for personal integrity.",
                 "bg_desc": "(Опиянение) Макар и да предоставят временно и кратко облекчение и намаляване на емоционалното напрежение, навиците и подходите, с които човек се опитва да предотврати неуспехите или несполуките от трудни за решаване житейски проблеми, в крайна сметка завършват с неблагоприятен изход, който поддържа нереалистични емоционални пристрастия и високата вероятност да се поддаде отново и отново на високорискови или нараняващи преживявания вследствие на лични емоционални навици.",
-                "score_group": "20, 21, 22"
+                "score_group": ["20", "21", "22"]
             }
         ]
     },

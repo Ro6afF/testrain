@@ -22,6 +22,7 @@ export class TestComponent implements OnInit {
   statiments: Statiment[] = [];
   miniscripts: Miniscript[] = [];
   sminiscripts: Miniscript[] = [];
+  selectedMiniscripts: Date[] = [];
   selectedStatements: { dens: number, time: Date }[] = [];
   selectedEmotions: { id: number, density: number, time: Date }[] = [];
   selectedStatiments: Date[] = [];
@@ -97,13 +98,22 @@ export class TestComponent implements OnInit {
     }
   }
 
+  selectMiniscript(miniscript): void {
+    if(this.selectedMiniscripts[miniscript.id]) {
+      this.selectedMiniscripts[miniscript.id] = undefined;
+    } else {
+      this.selectedMiniscripts[miniscript.id] = new Date();
+    }
+  }
+
   submitData(): void {
     this.webSv.submit({
       age: this.age,
       isMale: this.isMale,
       selectedEmotions: this.selectedEmotions,
       selectedStatements: this.selectedStatements,
-      selectedStatiments: this.selectedStatiments
+      selectedStatiments: this.selectedStatiments,
+      selectedMiniscripts: this.selectedMiniscripts
     }).then(x => this.router.navigate(['/results/' + x])).catch(x => alert(x));
   }
 }

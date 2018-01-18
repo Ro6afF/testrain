@@ -1,22 +1,61 @@
 <link rel="stylesheet" href="/bootstrap.min.css">
-<span *ngIf="specInfo">
-    <table class="table table-striped" style="width: 50%">
-        <thead>
-          <tr>
-            <th scope="col">Emotion</th>
-            <th scope="col">Density</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let emo of emoDens">
-            <td> {{emo.name}} </td>
-            <td> {{emo.density}} </td>
-          </tr>
-        </tbody>
-      </table>
-</span>
-<span *ngIf="!specInfo">
+<div *ngIf="specInfo" style="margin: 1em">
+  <h4>Primary results:</h4>
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Emotion</th>
+        <th scope="col">Density</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emo of emoDens">
+        <td> {{emo.name}} </td>
+        <td> {{emo.density}} </td>
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+  <h4>Secondary properties:</h4>
+  <table class="table table-striped table-hover">
+    <tbody>
+      <tr>
+        <td> Emotional pay-off: </td>
+        <td>
+          - Rewarding states: {{pPos}}%
+          <br>- Punishing states: {{pNeg}}%
+          <br>- Ambivalent states: {{pAmb}}%
+        </td>
+      </tr>
+      <tr>
+        <td>Affective management:</td>
+        <td>
+          * {{affectiveMana.en_name}}
+          <br>
+          <br> {{affectiveMana.en_desc}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+  <h4>Confirmed distribution and choosen scripts:</h4>
+  <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Script</th>
+          <th scope="col">Advantage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ms of miniscriptAdv">
+          <td> {{ms.name}} </td>
+          <td> {{ms.advantage}} </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+<div *ngIf="!specInfo">
   <p>
     results works!
   </p>
-</span>
+</div>

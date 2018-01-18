@@ -62,7 +62,7 @@
     <ng-template matStepLabel>Miniscripts</ng-template>
     <h4>Read the following concepts and choose only these which fit best to selected emotions(hover to see the descriptions):</h4>
     <mat-card *ngFor="let miniscript of sminiscripts">
-      <mat-checkbox [value]="miniscript.id" [matTooltip]="miniscript.en_desc" matTooltipPosition="right">{{miniscript.en_name}}</mat-checkbox>
+      <mat-checkbox [value]="miniscript.id" [matTooltip]="miniscript.en_desc" matTooltipPosition="right" (click)="selectMiniscript(miniscript)">{{miniscript.en_name}}</mat-checkbox>
     </mat-card>
     <h4 *ngIf="sminiscripts.length == 0" class="warning">Please select at least two emotions from the second step!</h4>
   </mat-step>
