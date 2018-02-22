@@ -1,4 +1,4 @@
-<mat-horizontal-stepper linear="false">
+<mat-horizontal-stepper linear="true">
   <mat-step [stepControl]="ageFG">
     <ng-template matStepLabel>Age and gender</ng-template>
     <br>
@@ -50,8 +50,8 @@
     <button mat-button matStepperNext>Next</button>
   </mat-step>
   <mat-step [stepControl]="ageFG">
-    <ng-template matStepLabel>WTFs?</ng-template>
-    <h4>Choose only these words, that relate most precisely to selected emotions:</h4>
+    <ng-template matStepLabel>Sentences</ng-template>
+    <h4>Choose only these words, that describe your personality:</h4>
     <mat-card *ngFor="let statiment of statiments">
       <mat-checkbox [value]="statiment.id" (click)="selectStatiment(statiment)">{{statiment.en_name}}</mat-checkbox>
     </mat-card>
